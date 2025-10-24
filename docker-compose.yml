@@ -1,0 +1,32 @@
+services:
+  mysqldb:
+    image: mysql:8
+    container_name: mysql-db
+    environment:
+      MYSQL_ROOT_PASSWORD: exam
+      MYSQL_DATABASE: examdb
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    image: bpardhasaradhi7/dockeraws-backend:latest
+    container_name: springboot
+    ports:
+      - "2026:2209"
+    depends_on:
+      - mysqldb
+    restart: on-failure
+
+  frontend:
+    image: bpardhasaradhi7/dockeraws-frontend:latest
+    container_name: react
+    ports:
+      - "3001:80"
+    depends_on:
+      - backend
+    restart: on-failure
+
+volumes:
+  mysql_data:
