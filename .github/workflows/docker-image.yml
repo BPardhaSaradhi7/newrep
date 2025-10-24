@@ -26,7 +26,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./BACKEND/SpringBootProject
-          file: ./BACKEND/SpringBootProject/backend.Dockerfile
+          file: ./BACKEND/SpringBootProject/backend.dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USER }}/examp-backend:latest
 
@@ -34,7 +34,7 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./FRONTEND/reactproject
-          file: ./FRONTEND/reactproject/frontend.Dockerfile
+          file: ./FRONTEND/reactproject/frontend.dockerfile
           push: true
           tags: ${{ secrets.DOCKER_USER }}/examp-frontend:latest
 
